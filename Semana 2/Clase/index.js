@@ -1,41 +1,38 @@
 // if
 
-// if( condición ){
-//     codigo
-// }
+
 
 // operadores lógicos (Los nombres de las variables son solo para los ejemplos, nunca llamen asi a sus variables)
 
-// const a = 5;
-// const b = '5';
-// console.log(a == b); 
+const a = 5;
+const b = '5';
+console.log(a == b); //true
 
-// console.log(a === b); 
+console.log(a === b); //false (Vale el tipo)
 
-// const c = 10;
-// const d = '10';
-// console.log(c != d); 
+const c = 10;
+const d = '10';
+console.log(c != d); //false 
 
-// console.log(c !== d); 
-
-
-// const x = 7;
-// const y = 5;
-// console.log(x > y); 
+console.log(c !== d); //true (Vale el tipo)
 
 
-// const p = true;
-// const q = false;
-// console.log(p && q); 
+const x = "Nacho";
+const y = "nacho";
+console.log(x > y); //false 
 
 
-// const r = true;
-// const s = false;
-// console.log(r || s); 
+const p = true;
+const q = false;
+console.log(p && q); 
+
+const r = true;
+const s = false;
+console.log(r || s); 
 
 
-// const t = true;
-// console.log(!t); 
+const t = true;
+console.log(!t); 
 
 
 // else
@@ -46,50 +43,80 @@
 //     codigo2
 // }
 
-// else if
+//else if
 
-// if( condición1 ){
-//     codigo1
-// }else if(condición2){
-//     codigo2
+// let edad = Number(prompt("¿Cuantos años tenes?"))
+
+// if(edad < 18){
+//     alert("No puede pasa")
+// }else if(edad == 25){
+//     alert("Podes pasar y tienes un descuento")
+// }else if(edad == 37){
+//     alert("te llevas una remera del 10")
 // }else{
-//     codigo3
+//     alert("Podes pasar")
 // }
 
 // switch
 
-// let mascota = "perro";
+// let mascota = prompt("¿Que mascota tienes?");
 
-// switch (mascota) {
+
+// switch (mascota.toLocaleLowerCase()) {
 //   case "lagarto":
-//     console.log("Tengo un lagarto");
+//     alert("Tengo un lagarto");
 //     break;
 //   case "perro":
-//     console.log("Tengo un perro");
+//     alert("Tengo un perro");
 //     break;
 //   case "gato":
-//     console.log("Tengo un gato");
+//     alert("Tengo un gato");
 //     break;
 //   case "serpiente":
-//     console.log("Tengo una serpiente");
+//     alert("Tengo una serpiente");
 //     break;
 //   case "loro":
-//     console.log("Tengo un loro");
+//     alert("Tengo un loro");
 //     break;
 //   default:
-//     console.log("No tengo mascota");
+//     alert("No tengo mascota");
 //     break;
 // }
 
+// if(mascota == "lagarto"){
+//     alert("Tengo un lagarto");
+// }else if(mascota == "perro"){
+//     alert("Tengo un perro");
+// }else if(mascota == "gato"){
+//     alert("Tengo un gato");
+// }else if(mascota == "serpiente"){
+//     alert("Tengo un serpiente");
+// }else if(mascota == "loro"){
+//     alert("Tengo un loro");
+// }else{
+//     alert("No tengo mascota");
+// }
+
 // for
+
+
+// let ingresarNumero = parseInt(prompt("Ingresar Numero"));
+// // En cada repetición, calculamos el número ingresado X el número de repetición (i)
+// for (let i = 1; i <= 10; i++) {
+//     let resultado = ingresarNumero * i ;
+//     console.log(ingresarNumero + " X " + i + " = " + resultado);
+// }
+
 
 // let cantidadAlumnos = Number(prompt("¿Cuántos alumnos tienes?"))
 // let notaTotal = 0
 
 // for (let i = 1; i <= cantidadAlumnos; i++) {
-//     let nota = Number(prompt(`¿Cuál es la nota del alumno ${i}?`))
+//     // let nota = Number(prompt(`¿Cuál es la nota del alumno ${i}?`))
+//     let nota = Number(prompt("¿Cuál es la nota del alumno " + i +"?"))
 //     notaTotal = notaTotal + nota
 // }
+
 
 // let promedio = notaTotal / cantidadAlumnos
 
@@ -97,15 +124,17 @@
 
 // while
 
-// let bandera = true
 // let cantidad = 0
 // let notaTotal = 0
+// let nota = 1354363123123123
 
-// while(bandera){
-//     let nota = Number(prompt("¿Cual es su nota de su alumno?"))
+
+// while(nota != 0){
+//     nota = Number(prompt("¿Cual es su nota de su alumno?"))
 //     notaTotal = notaTotal + nota
-//     cantidad++
-//     bandera = confirm("¿Quieres seguir?")
+//     if(nota !== 0){
+//         cantidad++
+//     }
 // }
 
 // let promedio = notaTotal / cantidad

@@ -4,6 +4,16 @@
 // Si tiene entre 10 y 50 comentarios, mostrar "Comentarios moderados".
 // De lo contrario, mostrar "¡Gran debate en marcha!".
 
+//let comentarios = Number(prompt("¿Cuantos comentarios tiene esta noticia?"))
+
+// if(comentarios <= 10){
+//     alert("Pocos comentarios")
+// }else if(comentarios > 10 && comentarios <= 50){
+//     alert("Comentarios moderados")
+// }else{
+//     alert("¡Gran debate en marcha!")
+// }
+
 
 // Ejercicio para switch:
 // En CoderNews, queremos asignar un nivel de importancia a las noticias basado en su categoría.
@@ -13,19 +23,42 @@
 // - "Política" tiene un nivel de importancia de "Bajo".
 // - Para cualquier otra categoría, el nivel de importancia es "Desconocido".
 
+// let categoria = prompt("¿De que categoría es esa noticia?\n 1- Tecnologia \n 2- Deporte \n 3- Politica")
 
+// switch (categoria) {
+//     case "1":
+//         alert("Alto")
+//         break
+//     case "2":
+//         alert("Medio")
+//         break
+//     case "3":
+//         alert("Bajo")
+//         break
+//     default:
+//         alert("Desconocido")
+//         break
+// }
 
 
 // Ejercicio para for:
 // En CoderNews, queremos imprimir los títulos de las noticias con un número de serie.
 // Utiliza un bucle for para imprimir el número de serie seguido del título de la noticia.
 
-let titulo1 = "Nuevo lanzamiento de iPhone";
-let titulo2 = "El equipo local gana el campeonato";
-let titulo3 = "Nuevo presidente elegido";
+// let titulo1 = "Nuevo lanzamiento de iPhone";
+// let titulo2 = "El equipo local gana el campeonato";
+// let titulo3 = "Nuevo presidente elegido";
 
 
-
+// for (let i = 1; i <= 3; i++) {
+//     if(i == 1){
+//         alert(titulo1)
+//     }else if( i == 2){
+//         alert(titulo2)
+//     }else{
+//         alert(titulo3)
+//     }
+// }
 
 
 // Ejercicio para while:
@@ -33,7 +66,18 @@ let titulo3 = "Nuevo presidente elegido";
 // Utiliza un bucle while para buscar el título de una noticia ingresado por el usuario.
 
 
-let tituloBuscadoWhile = "Nuevo presidente elegido";
+// let tituloBuscadoWhile = "Nuevo presidente elegido";
+// let bandera = true
+
+// while(bandera){
+//     let valorUser = prompt("¿Que noticia quiere buscar?")
+//     if(valorUser == tituloBuscadoWhile){
+//         bandera = false
+//         alert("¡Encontro el titulo!")
+//     }else{
+//         bandera = confirm("No lo encontramos ¿Quiere seguir buscando?")
+//     }
+// }
 
 
 // Ejercicio para do-while:
@@ -41,7 +85,12 @@ let tituloBuscadoWhile = "Nuevo presidente elegido";
 // Utiliza un bucle do-while para solicitar al usuario su voto (sí o no) al menos una vez.
 // Continúa solicitando el voto mientras el usuario ingrese una respuesta inválida.
 
+let voto
 
+do{
+    voto = prompt("¿Te gusto la noticia?").toLocaleLowerCase()
+    
+}while(voto !== "si" && voto !== "no")
 
 
 // Ejercicio para while:
@@ -66,10 +115,10 @@ let tituloBuscadoWhile = "Nuevo presidente elegido";
 
 
 // Variable para almacenar la calificación de relevancia ingresada por el usuario
-let relevanciaNoticia;
+//let relevanciaNoticia;
 
 // Bucle para validar si la entrada del usuario es un número
-let bandera = true;
+// let bandera = true;
 
 // Solicitar al usuario que ingrese la relevancia de la noticia
  //¿Que hay que hacer con este dato?
