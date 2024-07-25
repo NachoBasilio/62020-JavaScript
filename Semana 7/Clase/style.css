@@ -1,0 +1,13 @@
+.fondoLoco{
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(9,121,14,1) 22%, rgba(30,113,123,1) 27%, rgba(7,150,148,1) 37%, rgba(164,6,25,1) 56%, rgba(4,193,140,1) 70%, rgba(214,190,3,1) 76%, rgba(233,230,2,1) 87%, rgba(255,0,0,1) 100%);
+    color: white;
+}
+
+.red{
+    background-color: red;
+}
+
+.green{
+    background-color: green;
+}
