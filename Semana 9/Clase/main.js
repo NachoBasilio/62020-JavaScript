@@ -31,7 +31,9 @@ const selectorDeGeneraciones = (gen) => {
         case "Gen 9":
             return `${URL}limit=105&offset=905`
         case "Megas":
-            return `${URL}limit=46&offset=1057`
+            return `${URL}limit=60&offset=1057`
+        case "Pikachus":
+            return `${URL}limit=70&offset=1104`
         default:
             return `${URL}limit=151&offset=0`
     }
@@ -94,7 +96,7 @@ const creadoraDePokemon = (pokemon) => {
     container.classList.add("container")
 
     container.innerHTML = `
-        <img src="${pokemon.sprites.other.home.front_default}" />
+        <img src="${pokemon.sprites.other.home.front_default || pokemon.sprites.front_default}" />
         <h2>${pokemon.name}</h2>
         <div class="containerTipos">
             <p class="tipo ${pokemon.types[0].type.name}">${pokemon.types[0].type.name}</p>
@@ -119,6 +121,43 @@ const llamadoraDePokemon = async (url) => {
         let data = await result.json()
         let urls = data.results.map(pkm => pkm.url);
         llamarDeAUno(urls)
+    } catch (error) {
+        console.error(error)
+    }
+};
+
+
+const llamadoraDePokemonMegas = async (url) => {
+    try {
+        let result = await fetch(url)
+        let data = await result.json()
+        let urls = data.results.map(pkm =>{
+            console.log(pkm.name)
+            if(pkm.name.includes("mega")){
+                return pkm.url
+            }
+        })
+        const urlsLimpios = urls.filter(el => el != undefined)
+
+        llamarDeAUno(urlsLimpios)
+    } catch (error) {
+        console.error(error)
+    }
+};
+
+const llamadoraDePokemonPikachu = async (url) => {
+    try {
+        let result = await fetch(url)
+        let data = await result.json()
+        let urls = data.results.map(pkm =>{
+            console.log(pkm.name)
+            if(pkm.name.includes("pikachu")){
+                return pkm.url
+            }
+        })
+        const urlsLimpios = urls.filter(el => el != undefined)
+
+        llamarDeAUno(urlsLimpios)
     } catch (error) {
         console.error(error)
     }
@@ -149,7 +188,14 @@ terminarCompra.addEventListener("click", ()=>{
 botonesArrayGeneraciones.forEach((el)=>{
     el.addEventListener("click", (e)=>{
         loader()
-        llamadoraDePokemon(selectorDeGeneraciones(e.target.innerText))
+        if(e.target.innerText === "Megas"){
+            llamadoraDePokemonMegas(selectorDeGeneraciones(e.target.innerText))
+        }else if(e.target.innerText === "Pikachus"){
+            llamadoraDePokemonPikachu(selectorDeGeneraciones(e.target.innerText))
+        }
+        else{
+            llamadoraDePokemon(selectorDeGeneraciones(e.target.innerText))
+        }
         console.log(selectorDeGeneraciones(e.target.innerText))
     })
 })
