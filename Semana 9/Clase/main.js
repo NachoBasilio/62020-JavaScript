@@ -5,6 +5,7 @@ const carritoIcono = document.getElementById("carritoIcono");
 const carritoGrande = document.getElementById("carritoGrande")
 const terminarCompra = document.getElementById("terminarCompra")
 const botonesGeneraciones = document.querySelectorAll(".botonesGeneracion button")
+const total = document.getElementById("total")
 const botonesArrayGeneraciones = Array.from(botonesGeneraciones)
 
 let Carrito = JSON.parse(localStorage.getItem("carritoPKM")) || [];
@@ -28,7 +29,9 @@ const selectorDeGeneraciones = (gen) => {
         case "Gen 8":
             return `${URL}limit=96&offset=809`
         case "Gen 9":
-            return `${URL}limit=105&offset=905` 
+            return `${URL}limit=105&offset=905`
+        case "Megas":
+            return `${URL}limit=46&offset=1057`
         default:
             return `${URL}limit=151&offset=0`
     }
@@ -51,11 +54,15 @@ const actualizarCarrito = () => {
         carrito.innerHTML += `
             <div class="PokemoEnCarrito">
                 <h3>${el.nombre}</h3>
+                <p>$${el.precio}</p>
                 <img src="${el.img}" />
                 <h4>${el.cantidad}</h4>
             </div>
         `
     })
+    total.innerText ="$ " + Carrito.reduce((acc, el) =>{
+        return acc + el.cantidad * el.precio
+    },0)
     localStorage.setItem("carritoPKM", JSON.stringify(Carrito))
 }
 
@@ -73,6 +80,7 @@ const agregarAlCarrito = (pokemon) => {
             nombre: pokemon.name,
             id: pokemon.id,
             img: pokemon.sprites.front_default ,
+            precio: pokemon.base_experience,
             cantidad: 1
         })
     }
@@ -92,6 +100,7 @@ const creadoraDePokemon = (pokemon) => {
             <p class="tipo ${pokemon.types[0].type.name}">${pokemon.types[0].type.name}</p>
             ${pokemon.types[1] ? `<p class="tipo ${pokemon.types[1].type.name}">${pokemon.types[1].type.name}</p>` : ""}
         </div>
+        <p>$${pokemon.base_experience}</p>
         <button class="BotonCompra">Comprar</button>
     `;
 

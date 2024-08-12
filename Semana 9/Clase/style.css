@@ -218,7 +218,7 @@ h1 {
     color: white;
     width: 100%;
     max-width: 250px;
-    height: 150px;
+    height: 250px;
 }
 
 .PokemoEnCarrito h3 {
@@ -333,6 +333,17 @@ footer {
 footer p {
     margin: 5px 0;
     font-size: 0.9rem;
+}
+
+.total{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: row;
+    color: white;
+    font-size: 1.5rem;
+    gap: 10px;
 }
 
 /* Pokemon types */
