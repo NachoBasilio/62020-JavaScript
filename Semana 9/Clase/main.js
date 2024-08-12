@@ -1,74 +1,110 @@
-const URL = "https://pokeapi.co/api/v2/pokemon?limit=1000"
-const URL2 = "https://pokeapi.co/api/v2/pokemon"
-const main = document.getElementById("main")
+const URL = "https://pokeapi.co/api/v2/pokemon?limit=151";
+const main = document.getElementById("main");
+const carrito = document.getElementById("carrito");
+const carritoIcono = document.getElementById("carritoIcono");
+const carritoGrande = document.getElementById("carritoGrande")
+const terminarCompra = document.getElementById("terminarCompra")
 
+let Carrito = [];
 
-// setInterval(() => {
-//     console.log("Interval")
-// }, 1000)
+const actualizarCarrito = () => {
+    carrito.innerHTML = "";
+    Carrito.forEach(el => {
+        carrito.innerHTML += `
+            <div class="PokemoEnCarrito">
+                <h3>${el.nombre}</h3>
+                <img src="${el.img}" />
+                <h4>${el.cantidad}</h4>
+            </div>
+        `;
+    });
+};
 
+carritoIcono.addEventListener("click", () => {
+    carritoGrande.classList.toggle("mostrarCarrito");
+});
 
-// try {
-// console.log(1)
+const agregarAlCarrito = (pokemon) => {
+    const pokemonEnCarrito = Carrito.find(el => el.id === pokemon.id);
 
-// setTimeout(() => {
-// console.log(2)
-// }, 5000);
-
-// throw new Error("Hola")
-
-// console.log(3)
-
-// } catch (error) {
-//     console.error("El error es: ")
-// } finally {
-//     console.log("Soy un finally, ya nadie me usa")
-// }
+    if (pokemonEnCarrito) {
+        pokemonEnCarrito.cantidad += 1;
+    } else {
+        Carrito.push({
+            nombre: pokemon.name,
+            id: pokemon.id,
+            img: pokemon.sprites.front_default ,
+            cantidad: 1
+        });
+    }
+    actualizarCarrito();
+};
 
 const creadoraDePokemon = (pokemon) => {
-    console.log(pokemon.types[0].type.name)
-    main.innerHTML += `<div class="container">
+    const container = document.createElement("div");
+
+    container.classList.add("container");
+
+    container.innerHTML = `
         <img src="${pokemon.sprites.other.home.front_default}" />
         <h2>${pokemon.name}</h2>
-        <p class= "containerTipos ${pokemon.types[0].type.name}"> ${pokemon.types[0].type.name} </p>
-        
-        ${pokemon.types[1] ? `<p class=" containerTipos ${pokemon.types[1].type.name}"> ${pokemon.types[1].type.name} </p>` : ""}
-    </div>`
-}
+        <div class="containerTipos">
+            <p class="tipo ${pokemon.types[0].type.name}">${pokemon.types[0].type.name}</p>
+            ${pokemon.types[1] ? `<p class="tipo ${pokemon.types[1].type.name}">${pokemon.types[1].type.name}</p>` : ""}
+        </div>
+        <button class="BotonCompra">Comprar</button>
+    `;
+
+    main.appendChild(container);
+
+    const boton = container.querySelector(".BotonCompra"); //Query Selector tambien se puede usar en nodos que no sean Document. Asi puedo agregar el evento al boton.
+    boton.addEventListener("click", () => {
+        agregarAlCarrito(pokemon);
+    });
+};
+
 
 const llamadoraDePokemon = async () => {
-    let result = await fetch(URL)
-    let data = await result.json()
-    let urls = data.results.map(pkm => pkm.url)
-
-
-
-    llamarDeAUno(urls)
-}
+    try {
+        let result = await fetch(URL);
+        let data = await result.json();
+        let urls = data.results.map(pkm => pkm.url);
+        llamarDeAUno(urls);
+    } catch (error) {
+        console.error(error);
+    }
+};
 
 const llamarDeAUno = async (array) => {
     try {
         const arrayDePromesas = await Promise.all(array.map(async (url) => {
-            const res = await fetch(url)
-            const data = await res.json()
-            return data
-        }))
-
-        arrayDePromesas.forEach(pkm => {creadoraDePokemon(pkm)})
+            const res = await fetch(url);
+            const data = await res.json();
+            return data;
+        }));
+        main.innerHTML = ""
+        arrayDePromesas.forEach(pkm => {
+            creadoraDePokemon(pkm);
+        });
     } catch (error) {
-        console.error(error)
+        console.error(error);
     }
-}
+};
 
-llamadoraDePokemon()
+terminarCompra.addEventListener("click", ()=>{
+    Carrito = []
+    actualizarCarrito()
+})
 
-const unPokemon = async (nombre) => {
-    try{
-        let result = await fetch("https://pokeapi.co/api/v2/pokemon/" + nombre)
-        let data = await result.json()
-        creadoraDePokemon(data)
-        console.log(data)
-    }catch(error){
-        console.log("El pokemon que busca no existe")
-    }
-}
+llamadoraDePokemon();
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    main.innerHTML = `<div id="main" class="loading-container">
+        <div class="loading-spinner">
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+            <div class="loading-dot"></div>
+        </div>
+    </div>`
+
+})

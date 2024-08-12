@@ -1,18 +1,23 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
     background-color: #f4f4f4;
 }
 
-h1{
-    font-family: Arial, Helvetica, sans-serif;
+h1, h2, h3, h4, h5, h6 {
+    text-transform: capitalize;
+}
+
+h1 {
     text-align: center;
     font-size: 3rem;
 }
 
-#main{
+#main {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -20,138 +25,328 @@ h1{
     width: 80%;
     flex-wrap: wrap;
     margin: 0 auto;
-    gap: 2px;
+    gap: 20px;
 }
 
-.container{
+.titulo {
+    display: flex;
+    width: auto;
+    margin: 25px auto;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.titulo h1 {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+.titulo img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-    width: 20%;
+    width: 200px;
     height: 400px;
-    background-color: #aa9d9d;
+    background-color: #d6d6d6;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
 }
 
-.containerTipos{
+.container:hover {
+    transform: scale(1.05);
+}
+
+.container img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.container h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.containerTipos {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row; 
-    gap: 10px;
+    flex-direction: row;
+    width: 100%;
 }
 
-img{
-    width: 200px;
-    height: 200px;
+.tipo {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 1.2rem;
+    height: 30px;
+    text-transform: uppercase;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    color: white;
+}
+
+.BotonCompra {
+    background-color: #969696;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: auto;
+    transition: background-color 0.3s ease;
+}
+
+.BotonCompra:hover {
+    background-color: #666666;
+}
+
+.carritoIcono {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    width: 50px;
+    height: 50px;
     object-fit: cover;
+    cursor: pointer;
 }
 
-.grass{
+.carritoIcono img {
+    width: 100%;
+    height: 100%;
+}
+
+.carrito {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    background-color: #333;
+    z-index: 999;
+    flex-direction: column;
+    align-items: center;
+    transition: left 0.5s ease;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    scrollbar-width: none;
+}
+
+.mostrarCarrito {
+    left: 0;
+}
+
+.carrito h2 {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.carritoContenedorDeCards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.terminarCompra {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.terminarCompra:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.terminarCompra:active {
+    background-color: #1e7e34;
+}
+
+
+.PokemoEnCarrito {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #444;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 10px;
+    color: white;
+    width: 100%;
+    max-width: 250px;
+    height: 150px;
+}
+
+.PokemoEnCarrito h3 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.PokemoEnCarrito img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.PokemoEnCarrito h4 {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loading-text {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 20px;
+    font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loading-dot {
+    width: 15px;
+    height: 15px;
+    background-color: #333;
+    border-radius: 50%;
+    margin: 0 5px;
+    animation: loading 1.5s infinite;
+}
+
+.loading-dot:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.loading-dot:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes loading {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+    }
+}
+
+
+/* Estilos para los tipos de Pokémon */
+.grass {
     background-color: #78c850;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.fire{
+.fire {
     background-color: #f08030;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.water{
+.water {
     background-color: #6890f0;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.normal{
+.normal {
     background-color: #a8a878;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.electric{
+.electric {
     background-color: #f8d030;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.ice{
+.ice {
     background-color: #98d8d8;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.fighting{
+.fighting {
     background-color: #c03028;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.poison{
+.poison {
     background-color: #a040a0;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.ground{
+.ground {
     background-color: #e0c068;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.flying{
+.flying {
     background-color: #a890f0;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.psychic{
+.psychic {
     background-color: #f85888;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.bug{
+.bug {
     background-color: #a8b820;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.rock{
+.rock {
     background-color: #b8a038;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.ghost{
+.ghost {
     background-color: #705898;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.dragon{
+.dragon {
     background-color: #7038f8;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.dark{
+.dark {
     background-color: #705848;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.steel{
+.steel {
     background-color: #b8b8d0;
-    padding: 2px;
-    border-radius: 10px;
 }
 
-.fairy{
+.fairy {
     background-color: #ee99ac;
-    padding: 2px;
-    border-radius: 10px;
 }
-
