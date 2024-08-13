@@ -1,14 +1,14 @@
-const URL = "https://pokeapi.co/api/v2/pokemon?";
-const main = document.getElementById("main");
-const carrito = document.getElementById("carrito");
-const carritoIcono = document.getElementById("carritoIcono");
+const URL = "https://pokeapi.co/api/v2/pokemon?"
+const main = document.getElementById("main")
+const carrito = document.getElementById("carrito")
+const carritoIcono = document.getElementById("carritoIcono")
 const carritoGrande = document.getElementById("carritoGrande")
 const terminarCompra = document.getElementById("terminarCompra")
 const botonesGeneraciones = document.querySelectorAll(".botonesGeneracion button")
 const total = document.getElementById("total")
 const botonesArrayGeneraciones = Array.from(botonesGeneraciones)
 
-let Carrito = JSON.parse(localStorage.getItem("carritoPKM")) || [];
+let Carrito = JSON.parse(localStorage.getItem("carritoPKM")) || []
 
 const selectorDeGeneraciones = (gen) => {
     switch(gen) {
@@ -109,8 +109,20 @@ const creadoraDePokemon = (pokemon) => {
     main.appendChild(container)
 
     const boton = container.querySelector(".BotonCompra"); //Query Selector tambien se puede usar en nodos que no sean Document. Asi puedo agregar el evento al boton.
+
     boton.addEventListener("click", () => {
         agregarAlCarrito(pokemon)
+        Swal.fire({
+            title:"Su producto ya esta en el carrito ✅",
+            imageUrl:"https://media.tenor.com/8rWROBsE5IgAAAAM/meowth-crying.gif",
+            showConfirmButton: false,
+            position: 'bottom-end',
+            timer: 2000,
+            timerProgressBar: true,
+            toast: true,
+            imageAlt: "Un pokemon feliz porque agrego un producto al carrito",
+            background: "#dfb9b9"
+        })
     });
 };
 
@@ -180,6 +192,23 @@ const llamarDeAUno = async (array) => {
 };
 
 terminarCompra.addEventListener("click", ()=>{
+    if(Carrito.length === 0){
+        Swal.fire({
+            title:"No hay nada en su carrito",
+            imageUrl: "https://31.media.tumblr.com/1676579f0e294fc1e1658be30ee431f4/tumblr_mn0w0r6DRG1r3ifxzo1_500.gif",
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true
+        })
+    }else{
+        Swal.fire({
+            title:"Gracias por su compra",
+            imageUrl: "https://i.gifer.com/Iyom.gif",
+            showConfirmButton: false,
+            timer: 4000,
+            timerProgressBar: true
+        })
+    }
     Carrito = []
     actualizarCarrito()
 })
