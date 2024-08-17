@@ -16,5 +16,6 @@
         "Swal",
         "tambien",
         "toast"
-    ]
+    ],
+    "liveServer.settings.port": 5501
 }
