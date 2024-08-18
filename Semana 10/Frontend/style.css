@@ -161,7 +161,7 @@ p{
 }
 
 .formulario{
-    position: absolute;
+    position: fixed;
     width: 300px;
     top: 65vh; /* Ajusta la posición vertical según sea necesario */
     right: 20px; /* Ajusta la posición horizontal según sea necesario */
