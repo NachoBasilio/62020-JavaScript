@@ -14,10 +14,10 @@ class CarritoDeCompras {
     constructor() {
         this.articulos = JSON.parse(localStorage.getItem('carrito')) || [];
     }
-    
+
     agregarProducto(producto) {
         const productoExistente = this.articulos.find(prod => prod.titulo === producto.titulo);
-        
+
         if(productoExistente){
             productoExistente.cantidad++;
         }else{
@@ -52,7 +52,7 @@ function crearTarjetaDeProducto({titulo, precio, imagen, descripcion}){
     elementoPrincipal.innerHTML += `
         <div class="contenedorImagen">
             <img src="${imagen}" />
-            <div>  
+            <div>
                 <div>
                     <h3 class="titulo">${titulo}</h3>
                     <p class="desc">${descripcion}</p>
@@ -72,7 +72,7 @@ function llamado(){
     if(!datos.ok){
         throw new Error("Error al traer los datos")
     }else{
-        return datos.json() 
+        return datos.json()
     }
     })
     .then(productos => {
